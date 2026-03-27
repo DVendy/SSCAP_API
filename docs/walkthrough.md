@@ -64,3 +64,19 @@ To download all recorded data locally:
     node scripts/download_data.js
     ```
     This will create `data_backup.json` with all your records.
+
+## 📊 Analysis with Google Colab
+
+For advanced data analysis and visualization, a standalone Google Colab notebook is provided in the `analysis/` folder.
+
+### Features:
+- **Automatic IP Geocoding**: Visualizes sensor locations on an interactive map.
+- **Smart Timezone Discovery**: Automatically detects the local timezone based on the device's IP address.
+- **Advanced Date Parsing**: Automatically converts local date strings (e.g., "2024-03-20 10:00:00") to UTC, with a tracking column for transparency.
+- **Time-Series Visualization**: Provides interactive charts for water levels and daily usage patterns.
+
+### How to Use:
+1.  Open [Google Colab](https://colab.research.google.com/).
+2.  Upload the `analysis/SSCAP_Analysis.ipynb` file.
+3.  Enter your deployed Vercel URL in the first cell.
+4.  Run all cells to see your live data dashboard.

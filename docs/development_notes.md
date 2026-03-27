@@ -34,3 +34,11 @@ Stored records are JSON files with this structure:
 - **`metadata`**: Captured origin info (IP, Location, User-Agent) captured by Vercel.
 - **`id`**: Unique record UUID.
 - **`timestamps`**: Created/Updated ISO strings (system-generated).
+
+### 4. Timezone & Date Normalization (Analysis Layer)
+- **Challenge**: Some sensors send `catched_at` or `used_at` as plain text strings (e.g., "2024-03-20 10:00:00") without timezone information. Others use ISO 8601 UTC.
+- **Strategy**: 
+  - Instead of forcing the API to transform data (keeping it "Impact-Free" for Vercel), we handle normalization in the analysis notebook.
+  - **IP-Based Timezone Discovery**: The notebook geocodes the upload IP to find the device's local timezone (e.g., `America/Mexico_City`).
+  - **Smart Parsing**: If a date lacks a 'T' separator and timezone indicator, we assume it's local time and convert it to UTC using the discovered timezone.
+  - **Transparency**: A flag `is_local_text_conversion` is added to the data for traceability.
